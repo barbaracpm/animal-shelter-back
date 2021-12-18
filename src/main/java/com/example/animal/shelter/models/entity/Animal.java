@@ -47,7 +47,7 @@ public class Animal implements Serializable{
 	
 	private String color;
 	
-	private Number weight;
+	private float weight;
 	
 	private String description;
 	
@@ -128,12 +128,12 @@ public class Animal implements Serializable{
 	}
 
 
-	public Number getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
 
-	public void setWeight(Number weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 
