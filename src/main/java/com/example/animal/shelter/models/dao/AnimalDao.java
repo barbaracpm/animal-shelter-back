@@ -9,6 +9,7 @@ import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
 import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
+import com.example.animal.shelter.models.entity.Volunteer;
 
 
 public interface AnimalDao extends CrudRepository<Animal, Long>{//IMPLEMENTA METODOS DE MANIPULACION
@@ -22,5 +23,10 @@ public interface AnimalDao extends CrudRepository<Animal, Long>{//IMPLEMENTA MET
 	
 	@Query("from Sex")//desde la entidad, ponemos @Query porque no vamos a hacer un crud completo, solo consultar
 	public List<Sex>findAllSexs();
+	
+	@Query("from Volunteer")//desde la entidad, ponemos @Query porque no vamos a hacer un crud completo, solo consultar
+	public List<Volunteer>findAllVolunteers();
+
+
 
 }
