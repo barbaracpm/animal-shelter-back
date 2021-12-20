@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.animal.shelter.models.dao.AnimalDao;
 import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
+import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
 
 
@@ -59,6 +60,13 @@ public class AnimalServiceImpl implements AnimalService{
 	public List<Specie> findAllSpecies() {
 		
 		return animalDao.findAllSpecies();
+	}
+	
+	@Override
+	@Transactional(readOnly=true)//si es de tipo get readOnly
+	public List<Sex> findAllSexs() {
+		
+		return animalDao.findAllSexs();
 	}
 
 

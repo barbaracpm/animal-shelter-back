@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
+import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
 
 
@@ -17,5 +18,7 @@ public interface AnimalService {
 	
 	public List<Region>findAllRegions();
 	public List<Specie>findAllSpecies();
+	public List<Sex>findAllSexs();
+
 
 }

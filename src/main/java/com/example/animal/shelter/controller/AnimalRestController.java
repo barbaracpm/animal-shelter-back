@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
+import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
 import com.example.animal.shelter.models.service.AnimalService;
 
@@ -219,6 +220,11 @@ public class AnimalRestController {
 	@GetMapping("animals/species")
 	public List<Specie>listSpecies(){
 		return animalService.findAllSpecies();
+	}
+	
+	@GetMapping("animals/sexs")
+	public List<Sex>listSexs(){
+		return animalService.findAllSexs();
 	}
 	
 	

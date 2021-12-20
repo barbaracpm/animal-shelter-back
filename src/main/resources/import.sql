@@ -21,10 +21,15 @@ INSERT INTO regions (name) VALUES('Ciudad Autónoma de Melilla');
 INSERT INTO species (name) VALUES('perro');
 INSERT INTO species (name) VALUES('gato');
 
+INSERT INTO sexs (name) VALUES('macho');
+INSERT INTO sexs (name) VALUES('hembra');
 
-INSERT INTO animals (region_id,specie_id,name,birth_date,sex,color, weight, description) VALUES(12,1,'Gastón','2018-10-01','Macho', 'blanco', 6, 'Bueno con otros perros. Cauteloso con extraños. Tímido. Le gusta estar en compañía. Cariñoso. Dormilón');
-INSERT INTO animals (region_id,specie_id,name,birth_date,sex,color, weight, description) VALUES(5,1,'Tila','2006-06-15','Hembra', 'canela', 12, 'Perrita muy tranquila, juguetona, sociable con los demás, perros, gatos, personas adultas y niños, muy respetuosa con todos y amante de la familia aunque también muy independiente');
-INSERT INTO animals (region_id,specie_id,name,birth_date,sex,color, weight, description) VALUES(8,1,'Lisa','2014-07-06','Hembra', 'canela', 40, 'Bueno con perros y niños. Cauteloso con extraños. Bueno en el coche y en casa. A veces ladra. Le gusta pasear. Tímida. Le gusta estar en compañía. Cariñosa, juguetóna y dormilóna');
+
+
+
+INSERT INTO animals (region_id,specie_id,name,birth_date,sex_id,color, weight, description) VALUES(12,1,'Gastón','2018-10-01',1, 'blanco', 6, 'Bueno con otros perros. Cauteloso con extraños. Tímido. Le gusta estar en compañía. Cariñoso. Dormilón');
+INSERT INTO animals (region_id,specie_id,name,birth_date,sex_id,color, weight, description) VALUES(5,1,'Tila','2006-06-15',2, 'canela', 12, 'Perrita muy tranquila, juguetona, sociable con los demás, perros, gatos, personas adultas y niños, muy respetuosa con todos y amante de la familia aunque también muy independiente');
+INSERT INTO animals (region_id,specie_id,name,birth_date,sex_id,color, weight, description) VALUES(8,1,'Lisa','2014-07-06',2, 'canela', 40, 'Bueno con perros y niños. Cauteloso con extraños. Bueno en el coche y en casa. A veces ladra. Le gusta pasear. Tímida. Le gusta estar en compañía. Cariñosa, juguetóna y dormilóna');
 
 INSERT INTO users(username,password,enabled) VALUES('barbara','$2a$10$zMOyr8ALWbjes2qfVSCFAO4/t6FcBQExJn1Ko12awQoZCMwoDpTOe',1);
 INSERT INTO users (username,password,enabled) VALUES('maria','$$2a$10$ctMbe2DPFbVhPqPR7xnUdeynqFNRwQdzSPNS3YaxuoRXOv7GpCPqS',1);

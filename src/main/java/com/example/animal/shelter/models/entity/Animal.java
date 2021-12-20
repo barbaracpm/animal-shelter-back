@@ -43,7 +43,11 @@ public class Animal implements Serializable{
 	
 	private String picture;
 	
-	private String sex;
+	@NotNull(message="no puede estar vacío")
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="sex_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Sex sex;
 	
 	private String color;
 	
@@ -108,15 +112,6 @@ public class Animal implements Serializable{
 	}
 
 
-	public String getSex() {
-		return sex;
-	}
-
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
 
 	public String getColor() {
 		return color;
@@ -145,6 +140,15 @@ public class Animal implements Serializable{
 
 	public void setRegion(Region region) {
 		this.region = region;
+	}
+	
+	public Sex getSex() {
+		return sex;
+	}
+
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
 	}
 
 
