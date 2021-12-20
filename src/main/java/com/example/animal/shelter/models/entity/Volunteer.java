@@ -2,13 +2,11 @@ package com.example.animal.shelter.models.entity;
 
 import java.io.Serializable;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 
@@ -21,10 +19,15 @@ public class Volunteer implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //PARA GENERAR EL AUTOINCREMENT
 	private long id;
 	
+	//@Column(nullable = false) // es obligatorio
+	//@OneToMany(mappedBy = "volunteer",cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+    //private List<Animal> AnimalList;
+	
 	@Column(nullable = false) // es obligatorio
 	private String name;
 	private String surname;
-	
+
+
 	@Column(nullable = false, unique = true) // es obligatorio y único
 	private String email;
 	private int phone;
@@ -86,11 +89,16 @@ public class Volunteer implements Serializable{
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
+	
+	
+	//public List<Animal> getAnimalList() {
+		//return AnimalList;
+	//}
 
 
-
-
-
+	//public void setAnimalList(List<Animal> animalList) {
+		//AnimalList = animalList;
+	//}
 
 
 
