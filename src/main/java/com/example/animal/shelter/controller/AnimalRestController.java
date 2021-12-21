@@ -37,7 +37,6 @@ import com.example.animal.shelter.models.service.AnimalService;
 
 
 
-//cors para autorizar al cliente
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
@@ -53,7 +52,7 @@ public class AnimalRestController {
 	
 
 	
-	//con manejo de errores
+
 	@GetMapping("/animals/{id}")
 	public ResponseEntity<?>show(@PathVariable Long id){
 		Animal animal = null;
@@ -77,7 +76,7 @@ public class AnimalRestController {
 	}
 	
 	
-	//Post con manejo de errores
+
 	@PostMapping("/animals")
 	public ResponseEntity<?> create (@RequestBody Animal animal){
 		Animal animalNew = null;
@@ -116,7 +115,8 @@ public class AnimalRestController {
 			animalCurrent.setWeight(animal.getWeight());
 			animalCurrent.setRegion(animal.getRegion());
 			animalCurrent.setDescription(animal.getDescription());
-
+			//añadido por si acaso
+			//animalCurrent.setPicture(animal.getPicture());
 			
 			animalUpdated = animalService.save(animalCurrent);
 			

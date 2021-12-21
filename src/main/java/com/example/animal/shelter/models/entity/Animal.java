@@ -19,22 +19,22 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity//representa una tabla en una base de datos
+@Entity
 @Table(name = "animals")
 public class Animal implements Serializable{
 	
-	@Id //PARA QUE LA BD LO RECONOZCA COMO IDENTIFICADOR ID
+	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //PARA GENERAR EL AUTOINCREMENT
 	private long id;
 	
 	@Column(nullable = false) // es obligatorio
 	private String name;
 	
-	//many donde estamos, la palabra de la izquierda hace referencia donde estamos
+	
 	@NotNull(message="no puede estar vacío")
-	@ManyToOne(fetch=FetchType.LAZY)//hace una subconsulta atraves de un metodo, carga perezosa
-	@JoinColumn(name="specie_id")//para relacionar es indispensable
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})// ponemos porque tenemos una carga perezosa
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="specie_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Specie specie;
 	
 	@Column(name = "birth_date", nullable = false)
