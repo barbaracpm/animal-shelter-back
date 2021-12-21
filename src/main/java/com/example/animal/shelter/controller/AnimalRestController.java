@@ -33,7 +33,6 @@ import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
 import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
-import com.example.animal.shelter.models.entity.Volunteer;
 import com.example.animal.shelter.models.service.AnimalService;
 
 
@@ -228,10 +227,10 @@ public class AnimalRestController {
 		return animalService.findAllSexs();
 	}
 	
-	@GetMapping("animals/volunteers")
+	/*@GetMapping("animals/volunteers")
 	public List<Volunteer>listVolunteers(){
 		return animalService.findAllVolunteers();
-	}
+	}*/
 	
 	
 

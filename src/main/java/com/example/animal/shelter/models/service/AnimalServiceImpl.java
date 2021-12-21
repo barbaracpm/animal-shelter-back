@@ -11,7 +11,6 @@ import com.example.animal.shelter.models.entity.Animal;
 import com.example.animal.shelter.models.entity.Region;
 import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
-import com.example.animal.shelter.models.entity.Volunteer;
 
 
 
@@ -70,12 +69,12 @@ public class AnimalServiceImpl implements AnimalService{
 		return animalDao.findAllSexs();
 	}
 	
-	@Override
+/*@Override
 	@Transactional//si es de tipo get readOnly
 	public List<Volunteer> findAllVolunteers() {
 		
 		return animalDao.findAllVolunteers();
-	}
+	}*/
 
 
 }

@@ -37,12 +37,6 @@ INSERT INTO animals (region_id,specie_id,name,birth_date,sex_id,color, weight, d
 INSERT INTO animals (region_id,specie_id,name,birth_date,sex_id,color, weight, description) VALUES(6,1,'Ronaldo','2019-12-04',2, 'blanco y negro', 20, 'Perro fiel y bondadoso');
 
 
-INSERT INTO animals_volunteers (animal_id,volunteer_id) VALUES(1,1);
-INSERT INTO animals_volunteers (animal_id,volunteer_id) VALUES(2,1);
-INSERT INTO animals_volunteers (animal_id,volunteer_id) VALUES(3,2);
-INSERT INTO animals_volunteers (animal_id,volunteer_id) VALUES(4,2);
-INSERT INTO animals_volunteers (animal_id,volunteer_id) VALUES(5,1);
-
 
 
 

@@ -10,12 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
@@ -63,15 +61,14 @@ public class Animal implements Serializable{
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Region region;
 	
-	//VOLUNTEER
+	/*VOLUNTEER
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="volunteer_id")
 	@JoinTable(name="animals_volunteers",joinColumns= @JoinColumn(name="animal_id"),
 	inverseJoinColumns =@JoinColumn(name="volunteer_id"),
 	uniqueConstraints = {@UniqueConstraint(columnNames= {"animal_id","volunteer_id"})})
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Volunteer volunteer;
-	
+	private Volunteer volunteer;*/
 	
 	public long getId() {
 		return id;
