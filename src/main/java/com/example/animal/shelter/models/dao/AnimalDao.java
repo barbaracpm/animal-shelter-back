@@ -11,7 +11,7 @@ import com.example.animal.shelter.models.entity.Sex;
 import com.example.animal.shelter.models.entity.Specie;
 import com.example.animal.shelter.models.entity.Volunteer;
 
-
+//extiende de la interfaz CrudRepository donde están todos los métodos del crud
 public interface AnimalDao extends CrudRepository<Animal, Long>{//IMPLEMENTA METODOS DE MANIPULACION
 	
 	@Query("from Region")//desde la entidad, ponemos @Query porque no vamos a hacer un crud completo, solo consultar

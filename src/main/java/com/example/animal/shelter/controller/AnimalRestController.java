@@ -36,23 +36,26 @@ import com.example.animal.shelter.models.entity.Specie;
 import com.example.animal.shelter.models.service.AnimalService;
 
 
-
+//damos acceso al cliente
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
+//definimos la ruta
 @RequestMapping("/api")
 public class AnimalRestController {
 	
+	
+	//inyección de dependencias. No hace falta instanciar con new
 	@Autowired
 	private AnimalService animalService;
 	
+	//método get de todos los animales en ruta /api/animals
 	@GetMapping("/animals")
 	public List<Animal> index(){
 		return animalService.findAll();
 	}
 	
 
-	
-
+	//método get de animal por id
 	@GetMapping("/animals/{id}")
 	public ResponseEntity<?>show(@PathVariable Long id){
 		Animal animal = null;
