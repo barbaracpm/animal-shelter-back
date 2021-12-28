@@ -79,7 +79,7 @@ public class AnimalRestController {
 	}
 	
 	
-
+//Método post (create) (añadir nuevo animal)
 	@PostMapping("/animals")
 	public ResponseEntity<?> create (@RequestBody Animal animal){
 		Animal animalNew = null;
@@ -98,6 +98,7 @@ public class AnimalRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	//método put (modificar animal por id)
 	@PutMapping("/animals/{id}")
 	public ResponseEntity<?> update (@RequestBody Animal animal, @PathVariable Long id){
 		Animal animalCurrent = animalService.findById(id);
@@ -118,8 +119,7 @@ public class AnimalRestController {
 			animalCurrent.setWeight(animal.getWeight());
 			animalCurrent.setRegion(animal.getRegion());
 			animalCurrent.setDescription(animal.getDescription());
-			//añadido por si acaso
-			//animalCurrent.setPicture(animal.getPicture());
+	
 			
 			animalUpdated = animalService.save(animalCurrent);
 			
@@ -134,6 +134,7 @@ public class AnimalRestController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
+	//Método delete (eliminar animal por id)
 	@DeleteMapping("animals/{id}")
 	public ResponseEntity<?> delete(@PathVariable Long id){
 		Map<String, Object> response = new HashMap<>();
@@ -150,69 +151,73 @@ public class AnimalRestController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 		
-		
 	}
 	
 	@PostMapping("animals/uploads")
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file, @RequestParam("id") Long id){
+	public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") Long id){
 		Map<String, Object> response = new HashMap<>();
 		
 		Animal animal = animalService.findById(id);
 		
-		if(!file.isEmpty()) {
-			String fileName = UUID.randomUUID().toString()+"_"+file.getOriginalFilename().replace(" ", " ");
-			Path fileRoute = Paths.get("uploads").resolve(fileName).toAbsolutePath();
+		if(!archivo.isEmpty()) {
+			//String nombreArchivo = archivo.getOriginalFilename();-->este codigo no reemplaza la imagen
+			String nombreArchivo = UUID.randomUUID().toString()+"_"+archivo.getOriginalFilename().replace(" ", " ");
+			Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
 		
 		
 		try {
-			Files.copy(file.getInputStream(), fileRoute);
+			Files.copy(archivo.getInputStream(), rutaArchivo);
 		} catch (Exception e) {
-			response.put("mensaje", "Error al subir la imagen");
+			response.put("mensaje", "Error al subir la imagen del cliente");
 			response.put("error", e.getMessage().concat(": ").concat(e.getCause().getLocalizedMessage()));
 			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		String oldPicName = animal.getPicture();
-		if(oldPicName != null && oldPicName.length() > 0) {
-			Path oldPicRoute = Paths.get("uploads").resolve(oldPicName).toAbsolutePath();
-			File oldPicFile = oldPicRoute.toFile();
-			if(oldPicFile.exists() && oldPicFile.canRead()) {
-				oldPicFile.delete();
+		String nombreFotoAnterior = animal.getPicture();
+		if(nombreFotoAnterior != null && nombreFotoAnterior.length() > 0) {
+			Path rutaFotoAnterior = Paths.get("uploads").resolve(nombreFotoAnterior).toAbsolutePath();
+			File archivoFotoAnterior = rutaFotoAnterior.toFile();
+			if(archivoFotoAnterior.exists() && archivoFotoAnterior.canRead()) {
+				archivoFotoAnterior.delete();
 			}
 			
 		}
 		
-		animal.setPicture(fileName);
+		animal.setPicture(nombreArchivo);
 		animalService.save(animal);
 		
 		response.put("animal", animal);
-		response.put("mensaje", "Has subido correctamente la imagen: "+ fileName);
+		response.put("mensaje", "Has subido correctamente la imagen: "+ nombreArchivo);
 		}
 	
 	return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	
 	}
 	
-	@GetMapping("/uploads/img/{picName:.+}")
-	public ResponseEntity<Resource> seePicture(@PathVariable String picName){
-		Path fileRoute = Paths.get("uploads").resolve(picName).toAbsolutePath();
+	//foto
+	
+	@GetMapping("/uploads/img/{nombreFoto:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
+		Path rutaArchivo = Paths.get("uploads").resolve(nombreFoto).toAbsolutePath();
 		
-		Resource source = null;
+		Resource recurso = null;
 		
 		try {
-			source = new UrlResource(fileRoute.toUri());
+			recurso = new UrlResource(rutaArchivo.toUri());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
 		
-		if(!source.exists() && !source.isReadable()) {
-			throw new RuntimeException("Error no se puede cargar la imagen"+ picName);	
+		if(!recurso.exists() && !recurso.isReadable()) {
+			throw new RuntimeException("Error no se puede cargar la imagen"+ nombreFoto);	
 		}
 		
-		HttpHeaders header = new HttpHeaders();
-		header.add(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=\""+source.getFilename()+"\"");
-		return new ResponseEntity<Resource>(source, header, HttpStatus.OK);
+		HttpHeaders cabecera = new HttpHeaders();
+		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachement; filename=\""+recurso.getFilename()+"\"");
+		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
 		
 	}
+	
+
 	
 	@GetMapping("animals/regions")
 	public List<Region>listRegions(){
